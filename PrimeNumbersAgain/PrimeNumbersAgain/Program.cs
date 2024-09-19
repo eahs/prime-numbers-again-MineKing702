@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace PrimeNumbersAgain
@@ -18,14 +19,56 @@ namespace PrimeNumbersAgain
             timer.Stop();
             
             
-            Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Seconds} seconds.");
+            Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
 
-            EvaluatePassingTime(timer.Elapsed.Seconds);
+            EvaluatePassingTime(timer.Elapsed.Milliseconds);
         }
 
         static int FindNthPrime(int n)
         {
-            return 0;
+            List<int> primes = findPrimes();
+
+            if (n <= primes.Count)
+            {
+                return primes[n - 1]; // nth prime (zero-indexed list)
+            }
+            else
+            {
+                return -1; // Error if nth prime is beyond the range of primes found
+            }
+        }
+
+        static List<int> findPrimes()
+        {
+            int limit = 2000000;
+            bool[] isPrime = new bool[limit + 1];
+            List<int> primes = new List<int>();
+
+            for (int i = 2; i <= limit; i++)
+            {
+                isPrime[i] = true;
+            }
+
+            for (int p = 2; p * p <= limit; p++)
+            {
+                if (isPrime[p])
+                {
+                    for (int i = p * p; i <= limit; i += p)
+                    {
+                        isPrime[i] = false;
+                    }
+                }
+            }
+
+            for (int i = 2; i <= limit; i++)
+            {
+                if (isPrime[i])
+                {
+                    primes.Add(i);
+                }
+            }
+
+            return primes;
         }
 
         static int GetNumber()
@@ -54,7 +97,7 @@ namespace PrimeNumbersAgain
             Console.WriteLine(".##......##..##....##....##...##..##..........##.");
             Console.WriteLine(".##......##..##..######..##...##..######...####..");
             Console.WriteLine(".................................................\n\n");
-            Console.WriteLine("Nth Prime Solver O-Matic Online..\nGuaranteed to find primes up to 2 million in under 30 seconds!\n\n");
+            Console.WriteLine("Nth Prime Solver O-Matic Online..\nGuaranteed to find primes up to 2 million in under 3 seconds!\n\n");
             
         }
 
@@ -63,7 +106,7 @@ namespace PrimeNumbersAgain
             Console.WriteLine("\n");
             Console.Write("Time Check: ");
 
-            if (time <= 10)
+            if (time <= 3 * 1000)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Pass");
