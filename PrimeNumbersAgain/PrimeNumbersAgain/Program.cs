@@ -30,11 +30,11 @@ namespace PrimeNumbersAgain
 
             if (n <= primes.Count)
             {
-                return primes[n - 1]; // nth prime (zero-indexed list)
+                return primes[n - 1]; // return the answer
             }
             else
             {
-                return -1; // Error if nth prime is beyond the range of primes found
+                return -1; // return -1 if nth prime is above 2 million
             }
         }
 
@@ -49,13 +49,13 @@ namespace PrimeNumbersAgain
                 isPrime[i] = true;
             }
 
-            for (int p = 2; p * p <= limit; p++)
+            for (int i = 2; i * i <= limit; i++)
             {
-                if (isPrime[p])
+                if (isPrime[i])
                 {
-                    for (int i = p * p; i <= limit; i += p)
+                    for (int j = i * i; j <= limit; j += i)
                     {
-                        isPrime[i] = false;
+                        isPrime[j] = false;
                     }
                 }
             }
