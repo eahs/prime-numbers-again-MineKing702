@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace PrimeNumbersAgain
 {
@@ -20,7 +21,7 @@ namespace PrimeNumbersAgain
 
 
             Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-            Console.WriteLine($"                                                                      (That is {timer.Elapsed.Seconds} seconds)");
+            Console.WriteLine($"                                                                 (That is {timer.Elapsed.Seconds} seconds)");
 
             EvaluatePassingTime(timer.Elapsed.Milliseconds);
         }
@@ -42,13 +43,9 @@ namespace PrimeNumbersAgain
         // use the Sieve of Eratosthenes algorithm to find all prime numbers up to 2 million
         static List<int> findPrimes(int limit)
         {
-            bool[] isPrime = new bool[limit + 1];
+            bool[] isPrime = Enumerable.Repeat(true, limit + 1).ToArray();
             List<int> primes = new List<int>();
 
-            for (int i = 2; i <= limit; i++)
-            {
-                isPrime[i] = true;
-            }
 
             for (int i = 2; i * i <= limit; i++)
             {
