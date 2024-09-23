@@ -18,19 +18,14 @@ namespace PrimeNumbersAgain
             prime = FindNthPrime(n);
             timer.Stop();
 
-            if (prime == -1)
-            {
-                Console.WriteLine($"The {n}th prime number is over 2 million. It took me {timer.Elapsed.Milliseconds} milliseconds to figure that out though");
-            }
-            else
-            {
-                Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-            }
+
+            Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
+            Console.WriteLine($"                                                                      (That is {timer.Elapsed.Seconds} seconds)");
 
             EvaluatePassingTime(timer.Elapsed.Milliseconds);
         }
 
-        static int FindNthPrime(int n, int limit = 2000000)
+        static int FindNthPrime(int n, int limit = 32452843)
         {
             List<int> primes = findPrimes(limit);
 
