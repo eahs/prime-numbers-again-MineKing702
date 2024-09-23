@@ -44,6 +44,7 @@ namespace PrimeNumbersAgain
             }
         }
 
+        // use the Sieve of Eratosthenes algorithm to find all prime numbers up to 2 million
         static List<int> findPrimes(int limit)
         {
             bool[] isPrime = new bool[limit + 1];
