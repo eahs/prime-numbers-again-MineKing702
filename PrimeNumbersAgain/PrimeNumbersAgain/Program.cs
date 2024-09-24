@@ -28,7 +28,31 @@ namespace PrimeNumbersAgain
                 {
                     Console.WriteLine();
                 }
-                Console.WriteLine($"But it is {prime}");
+                Console.Write($"But it is ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(prime);
+                Console.ResetColor();
+                Console.Write("And it took me ");
+
+                string time = timer.Elapsed.Milliseconds + "";
+                if (time.Length < 3)
+                {
+                    string extended = timer.Elapsed.Seconds + ".";
+                    for (int i = 0; i < 3 - time.Length; i++)
+                    {
+                        extended += "0";
+                    }
+                    time = extended + time;
+                }
+                else
+                {
+                    time = timer.Elapsed.Seconds + "." + time;
+                }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(time);
+                Console.ResetColor();
+                Console.WriteLine(" seconds");
             }
             else
             {
@@ -37,11 +61,26 @@ namespace PrimeNumbersAgain
                 Console.Write(prime);
                 Console.ResetColor();
                 Console.Write($" is the nth prime when n is {n}. I found that answer in ");
+
+                string time = timer.Elapsed.Milliseconds + "";
+                if (time.Length < 3)
+                {
+                    string extended = timer.Elapsed.Seconds + ".";
+                    for (int i = 0; i < 3 - time.Length; i++)
+                    {
+                        extended += "0";
+                    }
+                    time = extended + time;
+                }
+                else
+                {
+                    time = timer.Elapsed.Seconds + "." + time;
+                }
+
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write(timer.Elapsed.Milliseconds);
+                Console.Write(time);
                 Console.ResetColor();
-                Console.WriteLine(" milliseconds.");
-                Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
+                Console.WriteLine(" Seconds.");
 
 
                 EvaluatePassingTime(timer.Elapsed.Milliseconds);
