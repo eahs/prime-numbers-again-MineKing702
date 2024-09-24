@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 
 namespace PrimeNumbersAgain
 {
@@ -21,7 +22,7 @@ namespace PrimeNumbersAgain
 
 
             Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-            Console.WriteLine($"                                                                 (That is {timer.Elapsed.Seconds} seconds)");
+            Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
 
             EvaluatePassingTime(timer.Elapsed.Milliseconds);
         }
