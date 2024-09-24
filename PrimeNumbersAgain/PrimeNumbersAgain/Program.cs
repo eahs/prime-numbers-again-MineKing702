@@ -20,11 +20,23 @@ namespace PrimeNumbersAgain
             prime = FindNthPrime(n);
             timer.Stop();
 
+            if (n > 2000000)
+            {
+                Console.WriteLine($"{n} is a bit bigger the 2 million");
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.WriteLine();
+                }
+                Console.WriteLine($"But it is {prime}");
+            }
+            else
+            {
 
-            Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-            Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
+                Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
+                Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
 
-            EvaluatePassingTime(timer.Elapsed.Milliseconds);
+                EvaluatePassingTime(timer.Elapsed.Milliseconds);
+            }
         }
 
         static int FindNthPrime(int n)
