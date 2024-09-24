@@ -27,26 +27,29 @@ namespace PrimeNumbersAgain
             EvaluatePassingTime(timer.Elapsed.Milliseconds);
         }
 
-        static int FindNthPrime(int n, int limit = 32452843)
+        static int FindNthPrime(int n)
         {
-            List<int> primes = findPrimes(limit);
+            int limit = EstimateLimit(n);
+
+            List<int> primes = SieveOfEratosthenes(limit);
 
             if (n <= primes.Count)
             {
-                return primes[n - 1]; // return the answer
+                return primes[n - 1];
             }
             else
             {
-                return -1; // return -1 if nth prime is above 2 million
+                return -1;
             }
         }
 
-        // use the Sieve of Eratosthenes algorithm to find all prime numbers up to 2 million
-        static List<int> findPrimes(int limit)
+        // Sieve of Eratosthenes to get the primes up to the limit found with the prime theorem
+        private static List<int> SieveOfEratosthenes(int limit)
         {
-            bool[] isPrime = Enumerable.Repeat(true, limit + 1).ToArray();
+            bool[] isPrime = new bool[limit + 1];
             List<int> primes = new List<int>();
 
+            for (int i = 2; i <= limit; i++) isPrime[i] = true;
 
             for (int i = 2; i * i <= limit; i++)
             {
@@ -68,6 +71,18 @@ namespace PrimeNumbersAgain
             }
 
             return primes;
+        }
+
+        // estimate the limit with the prime theorem
+        private static int EstimateLimit(int n)
+        {
+            if (n < 6)
+            {
+                return 15;
+            }
+
+            double estimatedLimit = n * (Math.Log(n) + Math.Log(Math.Log(n)));
+            return (int)estimatedLimit + 1;
         }
 
         static int GetNumber()
