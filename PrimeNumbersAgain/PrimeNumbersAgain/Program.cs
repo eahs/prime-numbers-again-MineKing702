@@ -20,10 +20,11 @@ namespace PrimeNumbersAgain
             prime = FindNthPrime(n);
             timer.Stop();
 
+            // outputs a different message if they put in a large number
             if (n > 2000000)
             {
                 Console.WriteLine($"{n} is a bit bigger the 2 million");
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     Console.WriteLine();
                 }
@@ -31,9 +32,8 @@ namespace PrimeNumbersAgain
             }
             else
             {
-
                 Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-                Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
+                Console.WriteLine($"                                                                 (That is {timer.Elapsed.Seconds} seconds)");
 
                 EvaluatePassingTime(timer.Elapsed.Milliseconds);
             }
@@ -61,8 +61,11 @@ namespace PrimeNumbersAgain
             bool[] isPrime = new bool[limit + 1];
             List<int> primes = new List<int>();
 
+            // set the full isPrime array to true
             for (int i = 2; i <= limit; i++) isPrime[i] = true;
 
+            // for each number we take each of its multiples and set it to false
+            // ex: 5 is prime so 5 * anything is not prime
             for (int i = 2; i * i <= limit; i++)
             {
                 if (isPrime[i])
