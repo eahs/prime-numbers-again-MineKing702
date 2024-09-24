@@ -32,8 +32,17 @@ namespace PrimeNumbersAgain
             }
             else
             {
-                Console.WriteLine($"\nToo easy.. {prime} is the nth prime when n is {n}. I found that answer in {timer.Elapsed.Milliseconds} milliseconds.");
-                Console.WriteLine($"                                                                 (That is {timer.Elapsed.Seconds} seconds)");
+                Console.Write($"\nToo easy.. ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(prime);
+                Console.ResetColor();
+                Console.Write($" is the nth prime when n is {n}. I found that answer in ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(timer.Elapsed.Milliseconds);
+                Console.ResetColor();
+                Console.WriteLine(" milliseconds.");
+                Console.WriteLine($"                                                                    (That is {timer.Elapsed.Seconds} seconds)");
+
 
                 EvaluatePassingTime(timer.Elapsed.Milliseconds);
             }
