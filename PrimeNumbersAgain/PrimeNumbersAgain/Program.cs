@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using System.Runtime.InteropServices.Marshalling;
+using System.Drawing;
 
 namespace PrimeNumbersAgain
 {
@@ -138,10 +139,9 @@ namespace PrimeNumbersAgain
         private static List<int> SieveOfEratosthenes(int limit)
         {
             bool[] isPrime = new bool[limit + 1];
-            List<int> primes = new List<int>();
+            Array.Fill(isPrime, true);
 
-            // set the full isPrime array to true
-            for (int i = 2; i <= limit; i++) isPrime[i] = true;
+            List<int> primes = new List<int>();
 
             // for each number we take each of its multiples and set it to false
             // ex: 5 is prime so 5 * anything is not prime
@@ -175,8 +175,8 @@ namespace PrimeNumbersAgain
                 return 15;
             }
 
-            double estimatedLimit = n * (Math.Log(n) + Math.Log(Math.Log(n)));
-            return (int)estimatedLimit + 1;
+            double log_n = Math.Log(n);
+            return ((int)(n * (log_n + Math.Log(log_n)))) + 1;
         }
 
         static int GetNumber()
@@ -263,7 +263,7 @@ namespace PrimeNumbersAgain
             }
 
             Console.ForegroundColor = ConsoleColor.Gray;
-            
+
         }
     }
 }
